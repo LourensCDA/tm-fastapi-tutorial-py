@@ -44,3 +44,12 @@ async def read_item(item_id: int):
         if item["id"] == item_id:
             return item
     return {"error": "Item not found"}
+
+
+@app.post("/items")
+async def create_item(item: dict):
+    """
+    Endpoint to create a new item
+    """
+    items.append(item)
+    return item
