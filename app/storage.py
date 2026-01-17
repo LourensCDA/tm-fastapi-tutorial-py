@@ -8,7 +8,10 @@ DATA_FILE = DATA_DIR / "issues.json"
 def load_data():
     if DATA_FILE.exists():
         with open(DATA_FILE, "r") as f:
-            return json.load(f)
+            try:
+                return json.load(f)
+            except json.JSONDecodeError:
+                print("No JSON data.")
     return []  # Return empty list if file does not exist
 
 
