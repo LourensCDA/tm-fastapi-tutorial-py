@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.routes import issues_router
+from app.middleware.timer import timing_middleware
 
 app = FastAPI()
 
@@ -12,4 +13,5 @@ async def health_check():
     return {"status": "ok"}
 
 
+app.middleware("http")(timing_middleware)
 app.include_router(issues_router)
